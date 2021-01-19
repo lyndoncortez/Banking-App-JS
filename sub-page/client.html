@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Add Client</legend>
+        <table>            
+            <tr>
+                <td>
+                    <label for="accntName">Account Name:</label>
+                </td>
+                <td>
+                    <input type="text" name="accntName" id="accntName">
+                </td>
+                
+            </tr>
+            <tr>
+                <td>
+                    <label for="accntNo">Account Number:</label>
+                </td>
+                <td>
+                    <input type="text" name="accntNo" id="accntNo">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <label for="accntType">Type of Account:</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label><input type="radio" name="accntType" id="accntType" value="savings">Savings</label>        
+                </td>
+                <td>
+                    <label><input type="radio" name="accntType" id="accntType" value="checking">Checking</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="initDep">Initial Deposit</label>
+                </td>
+                <td>
+                    <input type="number" name="initDep" id="initDep" data-type="currency">
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                  <table>
+                      <tr>
+                        <td>
+                            <button type="reset" id="reset">Reset</button>
+                        </td>
+                        <td>
+                            <button type="submit" id="add">Add</button>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+            </tr>
+        </table>   
+
+    </fieldset>
+    <fieldset>
+        <legend>Client Directory</legend>
+        <table border="1">
+            <thead>
+                <td>Account Name</td>
+                <td>Account Number</td>
+                <td>Account Type</td>
+                <td>Balance</td>
+            </thead>
+        </table>
+    </fieldset>
+
+    <script src="../script/client.js"></script>
+</body>
+</html>
