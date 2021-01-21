@@ -1,13 +1,35 @@
-const clients = [];
+const clients = [
+    {
+        accountName: "JM",
+        accountNumber:"001",
+        typeOfAccount:"Savings",
+        balance:100
+    },
+    {
+        accountName: "test1",
+        accountNumber:"002",
+        typeOfAccount:"Savings",
+        balance:100
+    },
+    {
+        accountName: "test2",
+        accountNumber:"003",
+        typeOfAccount:"Savings",
+        balance:100
+    }
+];
 
 const addBtn = document.getElementById('add');
 const resetBtn = document.getElementById('reset');
+const accntName = document.getElementById('accntName');
+const accntNo = document.getElementById('accntNo');
+const typeOfAccnt = document.getElementById('accntType');
+const initDep = document.getElementById('initDep');
 
-
+init();
 
 addBtn.addEventListener('click', function(){
     addClient();
-    addClientToList();
 
 })
 
@@ -17,14 +39,27 @@ resetBtn.addEventListener('click', function(){
     document.getElementById('initDep').textContent = "";
 })
 
-function addClient(){
+function init(){
+    let myTbl = document.getElementById("clientList");
+    let tBody = document.createElement("tbody");
+    myTbl.appendChild(tBody);
+    tBody.setAttribute("id","clientsList");
+    Object.keys(clients).forEach(function(row){
+        let tr = tBody.insertRow();
+        let td0 = tr.insertCell(0);
+        let td1 = tr.insertCell(1);
+        let td2 = tr.insertCell(2);
+        let td3 = tr.insertCell(3);
+        td0.innerHTML = clients[row].accountName;
+        td1.innerHTML = clients[row].accountNumber;
+        td2.innerHTML = clients[row].typeOfAccount;
+        td3.innerHTML = clients[row].balance;
+    })
+}
+
+function addClient(){   
     
-    let accntName = document.getElementById('accntName');
-    let accntNo = document.getElementById('accntNo');
-    let typeOfAccnt = document.getElementById('accntType');
-    let initDep = document.getElementById('initDep');
-    let accntType,
-    newClient = {}
+    let newClient = {};
 
     
     newClient.accountName = accntName.value;
@@ -33,31 +68,20 @@ function addClient(){
     newClient.typeOfAccount = typeOfAccnt.value;
     newClient.balance = initDep.value;
     clients.push(newClient);
-    // console.log(clients);
+    
+    let tbody = document.getElementById("clientsList");
+    let newRow = document.createElement("tr");
+   
+
+    tbody.appendChild(newRow);
+
+    let cName = newRow.insertCell(0);
+    let cNo = newRow.insertCell(1);
+    let cType = newRow.insertCell(2);
+    let cBal = newRow.insertCell(3);
+
+    cName.innerHTML = newClient.accountName;
+    cNo.innerHTML = newClient.accountNumber;
+    cType.innerHTML = newClient.typeOfAccount;
+    cBal.innerHTML = newClient.balance;
 }
-
-function addClientToList(){
-    let tbodyRef = document.getElementById('clientList').getElementsByTagName('tbody')[0];
-
-    let newRow = tbodyRef.insertRow();
-
-    let accntNameCell = newRow.insertCell(0);
-    let accntNoCell = newRow.insertCell(1);
-    let accntTypeCell = newRow.insertCell(2);
-    let balanceCell = newRow.insertCell(3);
-
-    for(let i = 0; i<clients.length; i++){
-        // let client = clients[i];
-        let cName = document.createTextNode(clients[0].accountName);
-        let cNo = document.createTextNode(clients[0].accountNumber);
-        let cToA = document.createTextNode(clients[0].typeOfAccount);
-        let cBal = document.createTextNode(clients[0].balance);
-        accntNameCell.appendChild(cName);
-        accntNoCell.appendChild(cNo);
-        accntTypeCell.appendChild(cToA);
-        balanceCell.appendChild(cBal);
-    }
-
-}
-
-
