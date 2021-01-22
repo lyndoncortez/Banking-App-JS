@@ -60,6 +60,13 @@ body {
    * Navbar
    */
   
+   img {
+    height: 10%;
+    width: 10%;
+    border-radius: 50%;
+   }
+
+
   .navbar-brand {
     padding-top: .75rem;
     padding-bottom: .75rem;
