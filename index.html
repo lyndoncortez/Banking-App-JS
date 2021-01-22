@@ -10,7 +10,7 @@
 </head>
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><i class="fab fa-monero"></i> MyBank</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img src="./img/logo.png" alt=""> Avion Bank</a>
         <ul class="navbar-nav px-3">
           <li class="nav-item text-nowrap">
             <a class="nav-link" href="#">Sign out</a>
@@ -67,16 +67,16 @@
             <form class="needs-validation" novalidate>
                 <div class="row g-3">
                   <div class="col-sm-6">
-                    <label for="accountName" class="form-label">Account Name</label>
-                    <input type="text" class="form-control" id="accountName" placeholder="" value="" required="">
+                    <label for="accntName" class="form-label">Account Name</label>
+                    <input type="text" class="form-control" id="accntName" placeholder="" value="" required="">
                     <div class="invalid-feedback">
                       Account name is required.
                     </div>
                   </div>
       
                   <div class="col-sm-6">
-                    <label for="accountNumber" class="form-label">Account Number</label>
-                    <input type="number" class="form-control" id="accountNumber" placeholder="" value="" required="">
+                    <label for="accntNo" class="form-label">Account Number</label>
+                    <input type="number" class="form-control" id="accntNo" placeholder="" value="" required="">
                     <div class="invalid-feedback">
                       Account number is required.
                     </div>
@@ -88,25 +88,25 @@
       
                 <div class="my-3">
                   <div class="form-check">
-                    <input id="savings" name="accountType" type="radio" class="form-check-input" checked="" required="">
+                    <input value="savings" id="savings" name="accountType" type="radio" class="form-check-input" checked="" required="">
                     <label class="form-check-label" for="savings">Savings</label>
                   </div>
                   <div class="form-check">
-                    <input id="checking" name="accountType" type="radio" class="form-check-input" required="">
+                    <input value="checking" id="checking" name="accountType" type="radio" class="form-check-input" required="">
                     <label class="form-check-label" for="checking">Checking</label>
                   </div>
                 </div>
                 
                 <div class="row g-3">
                     <div class="col-sm-6">
-                      <label for="initialDeposit" class="form-label">Initial Deposit</label>
-                      <input type="number" class="form-control" id="initialDeposit" placeholder="" value="" required="">
+                      <label for="initDep" class="form-label">Initial Deposit</label>
+                      <input type="number" class="form-control" id="initDep" placeholder="" value="" required="">
                       <div class="invalid-feedback">
                         Initial deposit is required.
                       </div>
                     </div>
                     <div class="col-sm-6 addBtn">
-                        <button class="w-100 btn btn-primary btn-md" type="submit">Add Client</button>
+                        <button class="w-100 btn btn-primary btn-md" type="button" id="add">Add Client</button>
                     </div>
                 </div>
                 
@@ -119,128 +119,23 @@
   
             <h2>Client Directory</h2>
             <div class="table-responsive">
-              <table class="table table-striped table-sm">
+              <table class="table table-striped table-sm" id="clientList">
                 <thead>
                   <tr>
-                    <th>ID</th>
                     <th>Account Name</th>
                     <th>Account Number</th>
                     <th>Type</th>
                     <th>Balance</th>
+                    <th>Transaction</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="">
                   <tr>
-                    <td>1,001</td>
-                    <td>Lorem</td>
-                    <td>ipsum</td>
-                    <td>dolor</td>
-                    <td>sit</td>
-                  </tr>
-                  <tr>
-                    <td>1,002</td>
-                    <td>amet</td>
-                    <td>consectetur</td>
-                    <td>adipiscing</td>
-                    <td>elit</td>
-                  </tr>
-                  <tr>
-                    <td>1,003</td>
-                    <td>Integer</td>
-                    <td>nec</td>
-                    <td>odio</td>
-                    <td>Praesent</td>
-                  </tr>
-                  <tr>
-                    <td>1,003</td>
-                    <td>libero</td>
-                    <td>Sed</td>
-                    <td>cursus</td>
-                    <td>ante</td>
-                  </tr>
-                  <tr>
-                    <td>1,004</td>
-                    <td>dapibus</td>
-                    <td>diam</td>
-                    <td>Sed</td>
-                    <td>nisi</td>
-                  </tr>
-                  <tr>
-                    <td>1,005</td>
-                    <td>Nulla</td>
-                    <td>quis</td>
-                    <td>sem</td>
-                    <td>at</td>
-                  </tr>
-                  <tr>
-                    <td>1,006</td>
-                    <td>nibh</td>
-                    <td>elementum</td>
-                    <td>imperdiet</td>
-                    <td>Duis</td>
-                  </tr>
-                  <tr>
-                    <td>1,007</td>
-                    <td>sagittis</td>
-                    <td>ipsum</td>
-                    <td>Praesent</td>
-                    <td>mauris</td>
-                  </tr>
-                  <tr>
-                    <td>1,008</td>
-                    <td>Fusce</td>
-                    <td>nec</td>
-                    <td>tellus</td>
-                    <td>sed</td>
-                  </tr>
-                  <tr>
-                    <td>1,009</td>
-                    <td>augue</td>
-                    <td>semper</td>
-                    <td>porta</td>
-                    <td>Mauris</td>
-                  </tr>
-                  <tr>
-                    <td>1,010</td>
-                    <td>massa</td>
-                    <td>Vestibulum</td>
-                    <td>lacinia</td>
-                    <td>arcu</td>
-                  </tr>
-                  <tr>
-                    <td>1,011</td>
-                    <td>eget</td>
-                    <td>nulla</td>
-                    <td>Class</td>
-                    <td>aptent</td>
-                  </tr>
-                  <tr>
-                    <td>1,012</td>
-                    <td>taciti</td>
-                    <td>sociosqu</td>
-                    <td>ad</td>
-                    <td>litora</td>
-                  </tr>
-                  <tr>
-                    <td>1,013</td>
-                    <td>torquent</td>
-                    <td>per</td>
-                    <td>conubia</td>
-                    <td>nostra</td>
-                  </tr>
-                  <tr>
-                    <td>1,014</td>
-                    <td>per</td>
-                    <td>inceptos</td>
-                    <td>himenaeos</td>
-                    <td>Curabitur</td>
-                  </tr>
-                  <tr>
-                    <td>1,015</td>
-                    <td>sodales</td>
-                    <td>ligula</td>
-                    <td>in</td>
-                    <td>libero</td>
+                    <td>John</td>
+                    <td>100091156234</td>
+                    <td>savings</td>
+                    <td>₱ 500</td>
+                    <td><a href=http://example.com/ target="_blank">Transaction Log</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -249,7 +144,7 @@
         </div>
       </div>
     
-
+    <script src="./app.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
