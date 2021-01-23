@@ -1,4 +1,5 @@
 
+const clients = [];
 const addBtn = document.getElementById('add');
 const accntName = document.getElementById('accntName');
 const accntNo = document.getElementById('accntNo');
@@ -14,8 +15,33 @@ addBtn.addEventListener('click', () => {
 
 
 function init(){
-    let myTbl = document.getElementById("clientList");
     let tBody = document.getElementsByTagName("tbody");
+
+    for(let i = 0; i < localStorage.length;i++){
+        let lcItem = localStorage.getItem(i);
+        let client = JSON.parse(lcItem);
+        clients.push(client);
+    }  
+
+    id = localStorage.length;
+
+    Object.keys(clients).forEach(function(row){
+        let tr = tBody.insertRow();
+        let td0 = tr.insertCell(0);
+        let td1 = tr.insertCell(1);
+        let td2 = tr.insertCell(2);
+        let td3 = tr.insertCell(3);
+        let td4 = tr.insertCell(4);
+        td0.innerHTML = clients[row].accountName;
+        td1.innerHTML = clients[row].accountNumber;
+        td2.innerHTML = clients[row].typeOfAccount;
+        td3.innerHTML = '₱ ' + clients[row].balance;
+        let a = document.createElement("a");
+        td4.append(a);
+        a.innerHTML = "Transaction";
+        a.href = "#";
+
+    })
 }
 
 function clearInputFields() {
@@ -31,6 +57,15 @@ function addClient(){
     let accType = radios.value;
     let formattedBal = bal.replace(/,/gi, "");
     let newBal = formattedBal.replace(/\d(?=(?:\d{3})+$)/g, '$&,');
+
+    try {
+        if(accntName.value == "" ) throw "Account Name is required!";
+        if(accntNo.value == "") throw "Account Number is required";
+        if(initDep.value == "") throw "Initial Balance is required";        
+    } catch (err) {
+        alert(err);
+        return;
+    }
 
     let table = document.getElementById("clientList");
     let row = table.insertRow();
@@ -52,6 +87,22 @@ function addClient(){
     tLog.innerHTML = '<a href=http://example.com/ target="_blank">Transaction Log</a>';
 
     clearInputFields();
+
+    let x = Object.keys(clients);
+    for(let i = 0; i < x.length; i++){
+        let accName = clients[i].accountName;
+        let accNo = clients[i].accountNumber;
+        let strAccName = accName.toUpperCase();
+        let strAccntName = accntName.value.toUpperCase();
+        if(strAccName === strAccntName){
+            alert("Client Already Exist.");
+            return;
+        }
+        if(accNo === accntNo.value){
+            alert("Account Number not available.");
+            return;
+        }
+    }
 }
 
 function showDeposit() {
