@@ -48,8 +48,8 @@
                   </a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="#" onclick="showDeposit()">Deposit</a>
-                    <a class="dropdown-item" href="#">Withdraw</a>
-                    <a class="dropdown-item" href="#">Transfer</a>
+                    <a class="dropdown-item" href="#" onclick="showWithdraw()">Withdraw</a>
+                    <a class="dropdown-item" href="#" onclick="showTransfer()">Transfer</a>
                   </div>
                 </li>
               </ul>
@@ -57,19 +57,12 @@
           </nav>
   
           <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-              <h2 class="h2">Add Client</h2>
-              <div class="btn-toolbar mb-2 mb-md-0">
-                <!-- <div class="btn-group mr-2">
-                  <button class="btn btn-sm btn-outline-secondary">Print</button>
-                  <button class="btn btn-sm btn-outline-secondary">Export</button>
-                </div> -->
+            
+            <!--Add Client-->
+            <form id="addUser" name="bank" class="needs-validation" novalidate>
+              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h2 class="h2">Add Client</h2>
               </div>
-              
-              
-            </div>
-
-            <form name="bank" class="needs-validation" novalidate>
                 <div class="row g-3">
                   <div class="col-sm-6">
                     <label for="accntName" class="form-label">Account Name</label>
@@ -118,11 +111,15 @@
                 <hr class="my-4">
               </form>
 
-              <form style="display: none" id="makeDeposit" name="deposit" class="needs-validation" novalidate>
+            <!--Deposit Transaction-->
+            <form style="display:none" id="makeDeposit" name="deposit" class="needs-validation" novalidate>
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                  <h2 class="h2">Deposit</h2>
+                </div>
                 <div class="row g-3">
                   <div class="col-sm-6">
                     <label for="accntName" class="form-label">Account Name</label>
-                    <input type="text" class="form-control" id="accntName" placeholder="" value="" required="">
+                    <input type="text" class="form-control" placeholder="" value="" required="">
                     <div class="invalid-feedback">
                       Account name is required.
                     </div>
@@ -130,42 +127,110 @@
       
                   <div class="col-sm-6">
                     <label for="accntNo" class="form-label">Account Number</label>
-                    <input type="number" class="form-control" id="accntNo" placeholder="" value="" required="">
+                    <input type="number" class="form-control" placeholder="" value="" required="">
                     <div class="invalid-feedback">
                       Account number is required.
                     </div>
                   </div>
                 </div>
-      
-                <p class="mb-3 mt-4">Type of Account</p>
-      
-                <div class="my-3">
-                  <div class="form-check">
-                    <input value="savings" id="save" name="accountType" type="radio" class="form-check-input" checked required>
-                    <label class="form-check-label" for="save">Savings</label>
-                  </div>
-                  <div class="form-check">
-                    <input value="checking" id="check" name="accountType" type="radio" class="form-check-input" required>
-                    <label class="form-check-label" for="check">Checking</label>
-                  </div>
-                </div>
                 
                 <div class="row g-3 mt-4">
                     <div class="col-sm-6">
-                      <label for="initDep" class="form-label">Initial Deposit</label>
-                      <input type="number" class="form-control" id="initDep" placeholder="" value="" required="">
+                      <label for="initDep" class="form-label">Deposit Amount</label>
+                      <input type="number" class="form-control" placeholder="" value="" required="">
                       <div class="invalid-feedback">
                         Initial deposit is required.
                       </div>
                     </div>
                     <div class="col-sm-6 addBtn">
-                        <button class="w-100 btn btn-primary btn-md" type="button" id="add" onclick="storeValue()">Add Client</button>
+                        <button class="w-100 btn btn-primary btn-md" type="button" >Deposit</button>
                     </div>
                 </div>
                 
       
                 <hr class="my-4">
               </form>
+
+            <!--Withdraw Transaction-->
+            <form style="display:none" id="makeWithdraw" name="withdraw" class="needs-validation" novalidate>
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                  <h2 class="h2">Withdraw</h2>
+                </div>
+                <div class="row g-3">
+                  <div class="col-sm-6">
+                    <label for="accntName" class="form-label">Account Name</label>
+                    <input type="text" class="form-control" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                      Account name is required.
+                    </div>
+                  </div>
+      
+                  <div class="col-sm-6">
+                    <label for="accntNo" class="form-label">Account Number</label>
+                    <input type="number" class="form-control" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                      Account number is required.
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row g-3 mt-4">
+                    <div class="col-sm-6">
+                      <label for="initDep" class="form-label">Withdraw Amount</label>
+                      <input type="number" class="form-control" placeholder="" value="" required="">
+                      <div class="invalid-feedback">
+                        Initial deposit is required.
+                      </div>
+                    </div>
+                    <div class="col-sm-6 addBtn">
+                        <button class="w-100 btn btn-primary btn-md" type="button" >Deposit</button>
+                    </div>
+                </div>
+                
+      
+                <hr class="my-4">
+              </form>
+
+            <!--Transfer Transaction-->
+            <form style="display:none" id="makeTransfer" name="transfer" class="needs-validation" novalidate>
+              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h2 class="h2">Transfer</h2>
+              </div>
+              <div class="row g-3">
+                <h5>From:</h5>
+                <h5>To:</h5>
+                <div class="col-sm-6">
+                  <label for="accntNo" class="form-label">Account Number</label>
+                  <input type="number" class="form-control" placeholder="" value="" required="">
+                  <div class="invalid-feedback">
+                    Account number is required.
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <label for="accntNo" class="form-label">Account Number</label>
+                  <input type="number" class="form-control" placeholder="" value="" required="">
+                  <div class="invalid-feedback">
+                    Account number is required.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row g-3 mt-4">
+                  <div class="col-sm-6">
+                    <label for="initDep" class="form-label">Transfer Amount</label>
+                    <input type="number" class="form-control" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                      Initial deposit is required.
+                    </div>
+                  </div>
+                  <div class="col-sm-6 addBtn">
+                      <button class="w-100 btn btn-primary btn-md" type="button" >Transfer</button>
+                  </div>
+              </div>
+              
+    
+              <hr class="my-4">
+            </form>
 
               <br>
   
@@ -188,12 +253,47 @@
                     <td>100091156234</td>
                     <td>savings</td>
                     <td>₱ 500</td>
-                    <td><a href=http://example.com/ target="_blank">Transaction Log</a></td>
+                    <td><a href="#logModal" data-toggle="modal" target="_blank">Transaction Log</a></td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </main>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="logModal" tabindex="-1" aria-labelledby="logModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="logModalLabel">Account No:</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-sm" id="clientList">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Transaction</th>
+                    </tr>
+                  </thead>
+                  <tbody id="">
+                    <tr>
+                      <td>01/24/21</td>
+                      <td>Lorem ipsum dolor</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
         </div>
       </div>
     

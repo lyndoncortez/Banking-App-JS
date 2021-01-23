@@ -56,4 +56,21 @@ function addClient(){
 
 function showDeposit() {
     document.getElementById('makeDeposit').style.display = "";
+    document.getElementById('addUser').style.display = "none";
+    document.getElementById('makeWithdraw').style.display = "none";
+    document.getElementById('makeTransfer').style.display = "none";
+}
+
+function showWithdraw() {
+    document.getElementById('makeDeposit').style.display = "none";
+    document.getElementById('addUser').style.display = "none";
+    document.getElementById('makeWithdraw').style.display = "";
+    document.getElementById('makeTransfer').style.display = "none";
+}
+
+function showTransfer() {
+    document.getElementById('makeDeposit').style.display = "none";
+    document.getElementById('addUser').style.display = "none";
+    document.getElementById('makeWithdraw').style.display = "none";
+    document.getElementById('makeTransfer').style.display = "";
 }
