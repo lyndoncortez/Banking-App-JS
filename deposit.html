@@ -47,7 +47,7 @@
                     Transaction
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#" onclick="showDeposit()">Deposit</a>
+                    <a class="dropdown-item" href="./deposit.html">Deposit</a>
                     <a class="dropdown-item" href="#">Withdraw</a>
                     <a class="dropdown-item" href="#">Transfer</a>
                   </div>
@@ -110,56 +110,7 @@
                       </div>
                     </div>
                     <div class="col-sm-6 addBtn">
-                        <button class="w-100 btn btn-primary btn-md" type="button" id="add">Add Client</button>
-                    </div>
-                </div>
-                
-      
-                <hr class="my-4">
-              </form>
-
-              <form style="display: none" id="makeDeposit" name="deposit" class="needs-validation" novalidate>
-                <div class="row g-3">
-                  <div class="col-sm-6">
-                    <label for="accntName" class="form-label">Account Name</label>
-                    <input type="text" class="form-control" id="accntName" placeholder="" value="" required="">
-                    <div class="invalid-feedback">
-                      Account name is required.
-                    </div>
-                  </div>
-      
-                  <div class="col-sm-6">
-                    <label for="accntNo" class="form-label">Account Number</label>
-                    <input type="number" class="form-control" id="accntNo" placeholder="" value="" required="">
-                    <div class="invalid-feedback">
-                      Account number is required.
-                    </div>
-                  </div>
-                </div>
-      
-                <p class="mb-3 mt-4">Type of Account</p>
-      
-                <div class="my-3">
-                  <div class="form-check">
-                    <input value="savings" id="save" name="accountType" type="radio" class="form-check-input" checked required>
-                    <label class="form-check-label" for="save">Savings</label>
-                  </div>
-                  <div class="form-check">
-                    <input value="checking" id="check" name="accountType" type="radio" class="form-check-input" required>
-                    <label class="form-check-label" for="check">Checking</label>
-                  </div>
-                </div>
-                
-                <div class="row g-3 mt-4">
-                    <div class="col-sm-6">
-                      <label for="initDep" class="form-label">Initial Deposit</label>
-                      <input type="number" class="form-control" id="initDep" placeholder="" value="" required="">
-                      <div class="invalid-feedback">
-                        Initial deposit is required.
-                      </div>
-                    </div>
-                    <div class="col-sm-6 addBtn">
-                        <button class="w-100 btn btn-primary btn-md" type="button" id="add" onclick="storeValue()">Add Client</button>
+                        <button class="w-100 btn btn-primary btn-md" type="button" id="add" >Add Client</button>
                     </div>
                 </div>
                 
