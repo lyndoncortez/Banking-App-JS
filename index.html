@@ -127,7 +127,7 @@
       
                   <div class="col-sm-6">
                     <label for="accntNo" class="form-label">Account Number</label>
-                    <input type="number" class="form-control" placeholder="" value="" required="">
+                    <input type="number" class="form-control" id="depositAcctNum" placeholder="" value="" required="">
                     <div class="invalid-feedback">
                       Account number is required.
                     </div>
@@ -137,13 +137,13 @@
                 <div class="row g-3 mt-4">
                     <div class="col-sm-6">
                       <label for="initDep" class="form-label">Deposit Amount</label>
-                      <input type="number" class="form-control" placeholder="" value="" required="">
+                      <input type="number" class="form-control" id="depositAmt" placeholder="" value="" required="">
                       <div class="invalid-feedback">
                         Initial deposit is required.
                       </div>
                     </div>
                     <div class="col-sm-6 addBtn">
-                        <button class="w-100 btn btn-primary btn-md" type="button" >Deposit</button>
+                        <button class="w-100 btn btn-primary btn-md" type="button" id="deposit" >Deposit</button>
                     </div>
                 </div>
                 
@@ -253,7 +253,7 @@
                     <td>100091156234</td>
                     <td>savings</td>
                     <td>₱ 500</td>
-                    <td><a href="#logModal" data-toggle="modal" target="_blank">Transaction Log</a></td>
+                    <td><a href="#logModal" data-toggle="modal" name="">Transaction Log</a></td>
                   </tr>
                 </tbody>
               </table>
