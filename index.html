@@ -112,14 +112,14 @@
               </form>
 
             <!--Deposit Transaction-->
-            <form style="display:none" id="makeDeposit" name="deposit" class="needs-validation" novalidate>
+            <form style="display:none" id="makeDeposit" name="deposit" class="needs-validation">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                   <h2 class="h2">Deposit</h2>
                 </div>
                 <div class="row g-3">
                   <div class="col-sm-6">
                     <label for="accntName" class="form-label">Account Name</label>
-                    <input type="text" class="form-control" placeholder="" value="" required="">
+                    <input type="text" class="form-control" id="depositAcctName" placeholder="" value="" required="">
                     <div class="invalid-feedback">
                       Account name is required.
                     </div>
@@ -159,31 +159,22 @@
                 <div class="row g-3">
                   <div class="col-sm-6">
                     <label for="accntName" class="form-label">Account Name</label>
-                    <input type="text" class="form-control" placeholder="" value="" required="">
-                    <div class="invalid-feedback">
-                      Account name is required.
-                    </div>
+                    <input type="text" class="form-control" id="withdrawAcctName" placeholder="" value="" required="">
                   </div>
       
                   <div class="col-sm-6">
                     <label for="accntNo" class="form-label">Account Number</label>
-                    <input type="number" class="form-control" placeholder="" value="" required="">
-                    <div class="invalid-feedback">
-                      Account number is required.
-                    </div>
+                    <input type="number" class="form-control" id="withdrawAcctNum" placeholder="" value="" required="">
                   </div>
                 </div>
                 
                 <div class="row g-3 mt-4">
                     <div class="col-sm-6">
                       <label for="initDep" class="form-label">Withdraw Amount</label>
-                      <input type="number" class="form-control" placeholder="" value="" required="">
-                      <div class="invalid-feedback">
-                        Initial deposit is required.
-                      </div>
+                      <input type="number" class="form-control" id="withdrawAmt" placeholder="" value="" required="">
                     </div>
                     <div class="col-sm-6 addBtn">
-                        <button class="w-100 btn btn-primary btn-md" type="button" >Deposit</button>
+                        <button class="w-100 btn btn-primary btn-md" type="button" id="withdraw" >Withdraw</button>
                     </div>
                 </div>
                 
@@ -201,30 +192,21 @@
                 <h5>To:</h5>
                 <div class="col-sm-6">
                   <label for="accntNo" class="form-label">Account Number</label>
-                  <input type="number" class="form-control" placeholder="" value="" required="">
-                  <div class="invalid-feedback">
-                    Account number is required.
-                  </div>
+                  <input type="number" class="form-control" id="fromAcctNum" placeholder="" value="" required="">
                 </div>
                 <div class="col-sm-6">
                   <label for="accntNo" class="form-label">Account Number</label>
-                  <input type="number" class="form-control" placeholder="" value="" required="">
-                  <div class="invalid-feedback">
-                    Account number is required.
-                  </div>
+                  <input type="number" class="form-control" id="toAcctNum" placeholder="" value="" required="">
                 </div>
               </div>
               
               <div class="row g-3 mt-4">
                   <div class="col-sm-6">
                     <label for="initDep" class="form-label">Transfer Amount</label>
-                    <input type="number" class="form-control" placeholder="" value="" required="">
-                    <div class="invalid-feedback">
-                      Initial deposit is required.
-                    </div>
+                    <input type="number" class="form-control" id="transferAmt" placeholder="" value="" required="">
                   </div>
                   <div class="col-sm-6 addBtn">
-                      <button class="w-100 btn btn-primary btn-md" type="button" >Transfer</button>
+                      <button class="w-100 btn btn-primary btn-md" type="button" id="transfer" >Transfer</button>
                   </div>
               </div>
               

@@ -2,6 +2,8 @@
 const clients = [];
 const addBtn = document.getElementById('add');
 const depositBtn = document.getElementById('deposit');
+const withdrawBtn = document.getElementById('withdraw');
+const transferBtn = document.getElementById('transfer');
 const accntName = document.getElementById('accntName');
 const accntNo = document.getElementById('accntNo');
 const initDep = document.getElementById('initDep');
@@ -16,6 +18,14 @@ addBtn.addEventListener('click', () => {
 
 depositBtn.addEventListener('click', () => {
     createDeposit();
+})
+
+withdrawBtn.addEventListener('click', () => {
+    createWithdraw();
+})
+
+transferBtn.addEventListener('click', () => {
+    createTransfer();
 })
 
 
@@ -53,6 +63,18 @@ function clearInputFields() {
     document.getElementById('accntName').value = "";
     document.getElementById('accntNo').value = "";
     document.getElementById('initDep').value = "";
+
+    document.getElementById('depositAcctName').value= "";
+    document.getElementById('depositAcctNum').value= "";
+    document.getElementById('depositAmt').value= "";
+
+    document.getElementById('withdrawAcctName').value= "";
+    document.getElementById('withdrawAcctNum').value= "";
+    document.getElementById('withdrawAmt').value= "";
+
+    document.getElementById('fromAcctNum').value= "";
+    document.getElementById('toAcctNum').value= "";
+    document.getElementById('transferAmt').value= "";
 }
 
 function addClient(){   
@@ -140,9 +162,11 @@ function showTransfer() {
     document.getElementById('makeTransfer').style.display = "";
 }
 
+
 function createDeposit() {
     let acctNum = document.getElementById('depositAcctNum').value;
     let amount = document.getElementById('depositAmt').value;
+    let bal = document.getElementById(`${acctNum}`);
     let newBal;
 
     for (let i = 0; i < clients.length; i++) {
@@ -152,12 +176,76 @@ function createDeposit() {
             let intBal = parseInt(formattedBal);
             intBal += parseInt(amount);
             newBal = intBal.toString();
-        } else {
-            alert(`There is no Account Number: ${acctNum} in the record!`)
+            newUserBal = newBal.replace(/\d(?=(?:\d{3})+$)/g, '$&,');
+            bal.innerHTML = `₱ ${newUserBal}`;
+            clients[i].balance = newUserBal;
+            clients[i].transaction.push(`Account Number: ${acctNum} deposited ₱${amount.replace(/\d(?=(?:\d{3})+$)/g, '$&,')}`);
         }
     }
-    // let userBal = newBal.replace(/,/gi, "");
-    let newUserBal = newBal.replace(/\d(?=(?:\d{3})+$)/g, '$&,');
+
+    clearInputFields();
+}
+
+
+function createWithdraw() {
+    let acctNum = document.getElementById('withdrawAcctNum').value;
+    let amount = document.getElementById('withdrawAmt').value;
     let bal = document.getElementById(`${acctNum}`);
-    bal.innerHTML = `₱${newUserBal}`;
+    let newBal;
+
+    for (let i = 0; i < clients.length; i++) {
+        if (acctNum === clients[i].accountNumber) {
+            let clientBal = clients[i].balance;
+            let formattedBal = clientBal.replace(/,/g, "");
+            let intBal = parseInt(formattedBal);
+            intBal -= parseInt(amount);
+            newBal = intBal.toString();
+            newUserBal = newBal.replace(/\d(?=(?:\d{3})+$)/g, '$&,');
+            bal.innerHTML = `₱ ${newUserBal}`;
+            clients[i].balance = newUserBal;
+            clients[i].transaction.push(`Account Number:${acctNum} withdrew ₱${amount.replace(/\d(?=(?:\d{3})+$)/g, '$&,')}`)
+        }
+    }
+
+    clearInputFields();
+}
+
+
+function createTransfer() {
+    let frAccntNum = document.getElementById('fromAcctNum').value;
+    let toAccntNum = document.getElementById('toAcctNum').value;
+    let amount = document.getElementById('transferAmt').value;
+    let fromBal = document.getElementById(`${frAccntNum}`);
+    let toBal = document.getElementById(`${toAccntNum}`);
+    
+
+    for (let i = 0; i < clients.length; i++) {
+        if (frAccntNum === clients[i].accountNumber) {
+            for (let j = 0;j < clients.length; j++) {
+                if (toAccntNum === clients[j].accountNumber) {
+                    let clientBal = clients[i].balance;
+                    let formattedBal = clientBal.replace(/,/g, "");
+                    let intBal = parseInt(formattedBal);
+                    intBal -= parseInt(amount);
+                    let newBal = intBal.toString();
+                    newUserBal = newBal.replace(/\d(?=(?:\d{3})+$)/g, '$&,');
+                    fromBal.innerHTML = `₱ ${newUserBal}`;
+                    clients[i].balance = newUserBal;
+                }
+
+                if (toAccntNum === clients[j].accountNumber) {
+                    let toClientBal = clients[j].balance;
+                    let toFormattedBal = toClientBal.replace(/,/g, "");
+                    let toIntBal = parseInt(toFormattedBal);
+                    toIntBal += parseInt(amount);
+                    let toNewBal = toIntBal.toString();
+                    toNewUserBal = toNewBal.replace(/\d(?=(?:\d{3})+$)/g, '$&,');
+                    toBal.innerHTML = `₱ ${toNewUserBal}`;
+                    clients[j].balance = toNewUserBal;
+                }
+            }
+        } 
+    }
+
+    clearInputFields();
 }
