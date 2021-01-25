@@ -303,8 +303,12 @@ function createTransfer() {
                         amount: `₱${amount.replace(/\d(?=(?:\d{3})+$)/g, '$&,')}`,
                         date:today
                     });
+                    let frmAccntName = clients[i].accountName;
+                    let fromClient = clients[i];
+                    let lsItem = JSON.stringify(fromClient);
+                    localStorage.setItem(`${frmAccntName.toUpperCase()}`,lsItem);
                 }
-
+                
                 if (toAccntNum === clients[j].accountNumber) {
                     let toClientBal = clients[j].balance;
                     let toFormattedBal = toClientBal.replace(/,/g, "");
@@ -319,6 +323,10 @@ function createTransfer() {
                         amount: `₱${amount.replace(/\d(?=(?:\d{3})+$)/g, '$&,')}`,
                         date:today
                     });
+                    let toAccntName = clients[j].accountName;
+                    let toClient = clients[j];
+                    let lsItem = JSON.stringify(toClient);
+                    localStorage.setItem(`${toAccntName.toUpperCase()}`,lsItem);
                 }
             }
         } 
