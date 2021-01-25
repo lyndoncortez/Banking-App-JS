@@ -363,12 +363,9 @@ function viewClientHistory() {
     let modalAccntNo = document.getElementById('logAccntNum');
     let tblBodylog = document.getElementById("clientLogBody");
     let clAccntNo = [], 
-        isAccntInList, 
-        i, 
-        j,
-        x;
+        isAccntInList;
     modalAccntNo.value = searchAccntNo.value;
-    for(x = 0; x < clients.length; x++){
+    for(let x = 0; x < clients.length; x++){
         let clAcNo = clients[x].accountNumber;
         clAccntNo.push(clAcNo);
     }
@@ -377,13 +374,13 @@ function viewClientHistory() {
     if(isAccntInList !== true || modalAccntNo.value == ""){
         let tr = tblBodylog.insertRow();
         return;
-    }else{
-        for(i = 0; i < clients.length; i++){
-            let clientLog = clients[i].transLog;
+    } else {
+        for(let i = 0; i < clients.length; i++){
             if(modalAccntNo.value === clients[i].accountNumber){
-                for(j = 0; j < clientLog.length; j++){
+                let clientLog = clients[i].transLog;
+                for(let j = 0; j < clientLog.length; j++){
                     
-                    let transAmount = clientLog[j].amount;
+                    let transAmount = clients[i].transLog[j].amount;
                     let formattedBal = transAmount.replace(/,/gi, "");
                     let amount = formattedBal.replace(/\d(?=(?:\d{3})+$)/g, '$&,');
                     
@@ -393,9 +390,9 @@ function viewClientHistory() {
                     let td1 = tr.insertCell(1);
                     let td2 = tr.insertCell(2);
                     
-                    td0.innerHTML = clientLog[j].transaction;
+                    td0.innerHTML = clients[i].transLog[j].transaction;
                     td1.innerHTML = amount;
-                    td2.innerHTML = clientLog[j].date;
+                    td2.innerHTML = clients[i].transLog[j].date;
                 }        
             } 
         }
@@ -406,11 +403,19 @@ function closeTransLog(){
     let table = document.getElementById("clientLogBody");
     let tr = table.getElementsByTagName("tr");
     if(tr.length !== 0){
-        for(let i = 0; i <= tr.length; i++){    
+        // for(let i = 0; i <= tr.length; i++){    
 
-            table.deleteRow(i);
-        }
+        //     table.deleteRow(i);
+        // }
+        table.innerHTML = "";
     }else{
         return;
     }   
 }
+
+function submitform() {
+    var f = document.getElementsByTagName('form')[0];
+    if(f.reportValidity()) {
+      f.submit();
+    }
+  }
