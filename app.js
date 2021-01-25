@@ -29,6 +29,8 @@ transferBtn.addEventListener('click', () => {
 })
 
 
+
+
 function init(){
     let tBody = document.getElementsByTagName("tbody");
 
@@ -249,3 +251,4 @@ function createTransfer() {
 
     clearInputFields();
 }
+
