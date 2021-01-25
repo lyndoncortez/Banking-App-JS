@@ -1,4 +1,4 @@
-body {
+  body {
     font-size: .875rem;
   }
   
@@ -6,6 +6,11 @@ body {
     width: 16px;
     height: 16px;
     vertical-align: text-bottom;
+  }
+
+  h5 {
+    width: 50%;
+    padding-left: 16px;
   }
   
   /*
