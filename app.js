@@ -426,10 +426,3 @@ function closeTransLog(){
         return;
     }   
 }
-
-function submitform() {
-    var f = document.getElementsByTagName('form')[0];
-    if(f.reportValidity()) {
-      f.submit();
-    }
-  }
