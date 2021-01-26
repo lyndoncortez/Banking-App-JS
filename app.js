@@ -264,7 +264,7 @@ function createWithdraw() {
                 clients[i].balance = newUserBal;
                 clients[i].transLog.push({
                     transaction: `Withdraw`,
-                    amount: `₱${amount.replace(/\d(?=(?:\d{3})+$)/g, '$&,')}`,
+                    amount: `-₱${amount.replace(/\d(?=(?:\d{3})+$)/g, '$&,')}`,
                     date:today
                 });
                 client = clients[i];
@@ -314,7 +314,7 @@ function createTransfer() {
                     clients[i].balance = newUserBal;
                     clients[i].transLog.push({
                         transaction: `transfer to ${clients[j].accountName}`,
-                        amount: `₱${amount.replace(/\d(?=(?:\d{3})+$)/g, '$&,')}`,
+                        amount: `-₱${amount.replace(/\d(?=(?:\d{3})+$)/g, '$&,')}`,
                         date:today
                     });
                     let frmAccntName = clients[i].accountName;
