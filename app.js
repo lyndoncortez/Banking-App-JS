@@ -284,8 +284,22 @@ function createTransfer() {
     let amount = document.getElementById('transferAmt').value;
     let fromBal = document.getElementById(`${frAccntNum}`);
     let toBal = document.getElementById(`${toAccntNum}`);
+    let x, accntNoList, isSenderInList, isReceiverInLIst;
     today = dd + '/' + mm + '/' + yyyy;
-
+    accntNoList = [];
+    for(x = 0; x < clients.length; x++){
+        accntNoList.push(clients[x].accountNumber);
+    }
+    isSenderInList = accntNoList.includes(frAccntNum);
+    isReceiverInLIst = accntNoList.includes(toAccntNum);
+    try {
+        if(!isSenderInList) throw `No record found for Account No: ${frAccntNum}`;
+        if(!isReceiverInLIst) throw `No record found for Account No: ${toAccntNum}`;
+        if(frAccntNum === toAccntNum) throw "You cannot transfer from and to the same account."
+    } catch (err) {
+        alert(err);
+        return;
+    }
     for (let i = 0; i < clients.length; i++) {
         if (frAccntNum === clients[i].accountNumber) {
             for (let j = 0;j < clients.length; j++) {
