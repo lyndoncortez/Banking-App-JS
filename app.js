@@ -137,7 +137,7 @@ function addClient(){
 
     newClient.accountName = accntName.value.toUpperCase();
     newClient.accountNumber = accntNo.value;
-    newClient.accountType = accType
+    newClient.accountType = accType;
     newClient.balance = newBal; 
     newClient.transLog = [{
         transaction: ` Created account for ${accntName.value}`,
@@ -257,6 +257,10 @@ function createWithdraw() {
                 let clientBal = clients[i].balance;
                 let formattedBal = clientBal.replace(/,/g, "");
                 let intBal = parseInt(formattedBal);
+                if(!intBal < parseInt(amount)){
+                    alert("Insuficient Balance");
+                    return;
+                }
                 intBal -= parseInt(amount);
                 newBal = intBal.toString();
                 newUserBal = newBal.replace(/\d(?=(?:\d{3})+$)/g, '$&,');
@@ -307,16 +311,21 @@ function createTransfer() {
                     let clientBal = clients[i].balance;
                     let formattedBal = clientBal.replace(/,/g, "");
                     let intBal = parseInt(formattedBal);
-                    intBal -= parseInt(amount);
-                    let newBal = intBal.toString();
-                    newUserBal = newBal.replace(/\d(?=(?:\d{3})+$)/g, '$&,');
-                    fromBal.innerHTML = `₱ ${newUserBal}`;
-                    clients[i].balance = newUserBal;
-                    clients[i].transLog.push({
+                    if(!clientBal < parseInt(amount)){
+                        alert("Insuficient Balance.");
+                        return;
+                    }
+                        let newBal = intBal.toString();
+                        newUserBal = newBal.replace(/\d(?=(?:\d{3})+$)/g, '$&,');
+                        fromBal.innerHTML = `₱ ${newUserBal}`;
+                        clients[i].balance = newUserBal;
+                        clients[i].transLog.push({
                         transaction: `transfer to ${clients[j].accountName}`,
                         amount: `-₱${amount.replace(/\d(?=(?:\d{3})+$)/g, '$&,')}`,
                         date:today
-                    });
+                    }); 
+                    intBal -= parseInt(amount);
+                               
                     let frmAccntName = clients[i].accountName;
                     let fromClient = clients[i];
                     let lsItem = JSON.stringify(fromClient);
