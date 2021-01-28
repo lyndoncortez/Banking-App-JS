@@ -157,6 +157,12 @@ function addClient() {
   let client = JSON.stringify(newClient);
   localStorage.setItem(`${accntName.value.toUpperCase()}`, client);
 
+  alert(
+    `${newClient.accountName.toUpperCase()} is successfully created with Initial balance: ₱${
+      newClient.balance
+    }`
+  );
+
   clearInputFields();
 }
 
@@ -189,6 +195,15 @@ function createDeposit() {
   let newBal;
   today = dd + "/" + mm + "/" + yyyy;
 
+  try {
+    if (acctNum === "") throw "Enter Client Account Number.";
+    if (acctName === "") throw "Enter Client Account Name.";
+    if (amount === "") throw "Enter the amount you want to deposit";
+  } catch (err) {
+    alert(err);
+    return;
+  }
+
   let clientNameList = [];
   for (let j = 0; j < clients.length; j++) {
     let clientsName = clients[j].accountName;
@@ -198,7 +213,7 @@ function createDeposit() {
   // console.log(isClientInList);
   if (isClientInList !== true) {
     alert(
-      `Please verify that Account Name: ${accntName.value} is enrolled and correct. `
+      `Please verify that Account Name: ${acctName} is enrolled and correct. `
     );
     return;
   } else {
@@ -224,11 +239,18 @@ function createDeposit() {
         client = clients[i];
         let lsItem = JSON.stringify(client);
         localStorage.setItem(`${acctName.toUpperCase()}`, lsItem);
+
+        let formatedAmount = amount.replace(/\d(?=(?:\d{3})+$)/g, "$&,");
+        alert(
+          `${clients[i].accountName.toUpperCase()} deposit ₱${formatedAmount}`
+        );
+        clearInputFields();
+        return;
       }
     }
+    alert("Client account name and account number did not match.");
+    return;
   }
-
-  clearInputFields();
 }
 
 function createWithdraw() {
@@ -238,29 +260,38 @@ function createWithdraw() {
   let bal = document.getElementById(`${acctNum}`);
   let newBal;
   today = dd + "/" + mm + "/" + yyyy;
+  try {
+    if (acctName === "") throw "Enter Client Account name.";
+    if (acctNum === "") throw "Enter Client Account number.";
+    if (amount === "") throw "Enter the amount you want to withdraw";
+  } catch (err) {
+    alert(err);
+    return;
+  }
 
   let clientNameList = [];
   for (let j = 0; j < clients.length; j++) {
     let clientsName = clients[j].accountName;
     clientNameList.push(clientsName);
   }
+  console.log(clientNameList);
   let isClientInList = clientNameList.includes(acctName.toUpperCase());
   if (isClientInList !== true) {
-    alert(
-      `Please verify that Account Name: ${accntName.value} is enrolled and correct. `
-    );
+    alert(`Please verify that Accounts is enrolled and correct. `);
     return;
   } else {
     let client;
     for (let i = 0; i < clients.length; i++) {
+      let clientAccntName = clients[i].accountName.toUpperCase();
+      let cientAccntNo = clients[i].accountNumber;
       if (
-        acctNum === clients[i].accountNumber &&
-        acctName.toUpperCase() === clients[i].accountName.toUpperCase()
+        acctNum === cientAccntNo &&
+        acctName.toUpperCase() === clientAccntName
       ) {
         let clientBal = clients[i].balance;
         let formattedBal = clientBal.replace(/,/g, "");
         let intBal = parseInt(formattedBal);
-        if (!intBal < parseInt(amount)) {
+        if (intBal < parseInt(amount)) {
           alert("Insuficient Balance");
           return;
         }
@@ -277,11 +308,19 @@ function createWithdraw() {
         client = clients[i];
         let lsItem = JSON.stringify(client);
         localStorage.setItem(`${acctName.toUpperCase()}`, lsItem);
+
+        let formatedAmount = amount.replace(/\d(?=(?:\d{3})+$)/g, "$&,");
+        alert(
+          `${clients[i].accountName.toUpperCase()} withdraw ₱${formatedAmount}`
+        );
+
+        clearInputFields();
+        return;
       }
     }
+    alert("Client account name and account number did not match.");
+    return;
   }
-
-  clearInputFields();
 }
 
 function createTransfer() {
@@ -292,6 +331,16 @@ function createTransfer() {
   let toBal = document.getElementById(`${toAccntNum}`);
   let x, accntNoList, isSenderInList, isReceiverInLIst;
   today = dd + "/" + mm + "/" + yyyy;
+
+  try {
+    if (frAccntNum === "") throw "Enter Sender Account Number.";
+    if (toAccntNum === "") throw "Enter Receiver Account Number.";
+    if (amount === "") throw "Enter the amount you want to transfer";
+  } catch (err) {
+    alert(err);
+    return;
+  }
+
   accntNoList = [];
   for (x = 0; x < clients.length; x++) {
     accntNoList.push(clients[x].accountNumber);
@@ -315,11 +364,15 @@ function createTransfer() {
           let clientBal = clients[i].balance;
           let formattedBal = clientBal.replace(/,/g, "");
           let intBal = parseInt(formattedBal);
-          if (!clientBal < parseInt(amount)) {
+          intBal -= parseInt(amount);
+          let newBal = intBal.toString();
+
+          let senderBal = clients[i].balance.replace(/,/g, "");
+          if (parseInt(senderBal) < parseInt(amount)) {
             alert("Insuficient Balance.");
             return;
           }
-          let newBal = intBal.toString();
+
           newUserBal = newBal.replace(/\d(?=(?:\d{3})+$)/g, "$&,");
           fromBal.innerHTML = `₱ ${newUserBal}`;
           clients[i].balance = newUserBal;
@@ -328,12 +381,20 @@ function createTransfer() {
             amount: `-₱${amount.replace(/\d(?=(?:\d{3})+$)/g, "$&,")}`,
             date: today,
           });
-          intBal -= parseInt(amount);
 
           let frmAccntName = clients[i].accountName;
           let fromClient = clients[i];
           let lsItem = JSON.stringify(fromClient);
           localStorage.setItem(`${frmAccntName.toUpperCase()}`, lsItem);
+
+          let formatedAmount = amount.replace(/\d(?=(?:\d{3})+$)/g, "$&,");
+          alert(
+            `${clients[
+              i
+            ].accountName.toUpperCase()} transfer ₱${formatedAmount} to ${clients[
+              j
+            ].accountName.toUpperCase()}`
+          );
         }
 
         if (toAccntNum === clients[j].accountNumber) {

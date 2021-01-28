@@ -232,8 +232,6 @@
                 </button>
               </div>
             </div>
-
-            <hr class="my-4" />
           </form>
 
           <!--Deposit Transaction-->
@@ -303,8 +301,6 @@
                 </button>
               </div>
             </div>
-
-            <hr class="my-4" />
           </form>
 
           <!--Withdraw Transaction-->
@@ -372,8 +368,6 @@
                 </button>
               </div>
             </div>
-
-            <hr class="my-4" />
           </form>
 
           <!--Transfer Transaction-->
@@ -442,11 +436,9 @@
                 </button>
               </div>
             </div>
-
-            <hr class="my-4" />
           </form>
 
-          <h2>Client Directory</h2>
+          <h2 class="mt-5">Client Directory</h2>
           <hr class="my-4" />
           <form
             id="filterClient"
@@ -460,14 +452,15 @@
                   >Filter by Account Number</label
                 >
                 <input
-                  style="text-align: right"
-                  type="text"
+                  style="text-align: left"
+                  type="number"
                   class="form-control"
                   id="filterDir"
                   onkeyup="myFilter()"
                   placeholder="Search Account Number"
                   value=""
                   required=""
+                  oninput="validity.valid||(value='');"
                 />
               </div>
               <div class="col-sm-6 addBtn">
