@@ -18,7 +18,7 @@ This is a basic banking application for a bank employee/manager built with JavaS
 * JavaScript
 
 ## Screenshots
-<img src="https://github.com/lyndoncortez/Banking-App-JS/blob/master/img/add_client.png" height=500>
+<img src="https://github.com/lyndoncortez/Banking-App-JS/blob/master/img/add_client.png" height=550>
 <img src="https://github.com/lyndoncortez/Banking-App-JS/blob/master/img/deposit.png" height=500>
 <img src="https://github.com/lyndoncortez/Banking-App-JS/blob/master/img/transfer.png" height=500>
 <img src="https://github.com/lyndoncortez/Banking-App-JS/blob/master/img/transaction_log.png" height=500>
